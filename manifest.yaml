@@ -1,0 +1,29 @@
+version: 0.0.1
+type: plugin
+author: "tbontb-iaq"
+name: "anysearch"
+description:
+  en_US: Real-time web search, vertical domain search, and web page extraction for AI agents.
+  zh_Hans: 面向 AI Agent 的实时网络搜索、垂直领域搜索与网页内容提取。
+label:
+  en_US: "AnySearch"
+created_at: "2026-09-21T00:00:00Z"
+icon: icon.svg
+icon_dark: icon-dark.svg
+resource:
+  memory: 1048576
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - "provider/anysearch.yaml"
+meta:
+  version: 0.0.1
+  arch:
+    - "amd64"
+    - "arm64"
+  runner:
+    language: "python"
+    version: "3.12"
+    entrypoint: "main"

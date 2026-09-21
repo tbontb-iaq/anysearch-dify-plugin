@@ -1,0 +1,27 @@
+description:
+  human:
+    en_US: Extract the full content of a web page as clean Markdown.
+    zh_Hans: 提取网页完整内容并转换为干净的 Markdown。
+  llm: Extract the full text content of a web page as clean Markdown via AnySearch.
+    Input the page URL. Supports HTML, plain text, JSON, and Markdown pages.
+extra:
+  python:
+    source: tools/extract.py
+identity:
+  author: tbontb-iaq
+  label:
+    en_US: AnySearch Extract
+    zh_Hans: AnySearch 网页提取
+  name: extract
+parameters:
+  - name: url
+    form: llm
+    human_description:
+      en_US: The URL of the web page to extract.
+      zh_Hans: 要提取内容的网页 URL。
+    label:
+      en_US: URL
+      zh_Hans: URL
+    llm_description: The URL of the web page to extract content from.
+    required: true
+    type: string

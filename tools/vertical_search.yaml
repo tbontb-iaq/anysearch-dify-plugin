@@ -1,0 +1,69 @@
+description:
+  human:
+    en_US: Vertical domain search (finance, academic, health, code, ...) with
+      structured parameters, for better precision than general web search.
+    zh_Hans: 垂直领域搜索（金融、学术、健康、代码等），支持结构化参数，比通用搜索更精准。
+  llm: Vertical domain search via AnySearch for domain-specific queries (finance,
+    academic, health, code, legal, etc). Requires a 'tag' (e.g. finance.quote) —
+    discover valid tags and their parameters with the sub_domains tool first.
+    Optional 'params' is a JSON object or 'key=value,key=value' string.
+extra:
+  python:
+    source: tools/vertical_search.py
+identity:
+  author: tbontb-iaq
+  label:
+    en_US: AnySearch Vertical Search
+    zh_Hans: AnySearch 垂直搜索
+  name: vertical_search
+parameters:
+  - name: query
+    form: llm
+    human_description:
+      en_US: The search query.
+      zh_Hans: 搜索查询词。
+    label:
+      en_US: Query
+      zh_Hans: 查询
+    llm_description: The search query.
+    required: true
+    type: string
+  - name: tag
+    form: llm
+    human_description:
+      en_US: 'Vertical sub-domain tag, e.g. finance.quote (see sub_domains tool).'
+      zh_Hans: '垂直子域标签，如 finance.quote（可用 sub_domains 工具查询）。'
+    label:
+      en_US: Tag
+      zh_Hans: 标签
+    llm_description: Vertical sub-domain tag (e.g. finance.quote). Discover valid
+      tags with the sub_domains tool.
+    required: true
+    type: string
+  - name: params
+    form: llm
+    human_description:
+      en_US: 'Sub-domain parameters as JSON or key=value pairs, e.g. type=stock,symbol=AAPL.'
+      zh_Hans: '子域参数，JSON 或 key=value 形式，如 type=stock,symbol=AAPL。'
+    label:
+      en_US: Params
+      zh_Hans: 参数
+    llm_description: Sub-domain parameters required by the tag, as a JSON object or
+      'key=value,key=value' string, e.g. type=stock,symbol=AAPL,cn_code=. The
+      sub_domains tool lists which parameters each tag requires.
+    required: false
+    type: string
+  - name: max_results
+    default: 5
+    form: llm
+    human_description:
+      en_US: Number of results to return (1-10).
+      zh_Hans: 返回结果数量（1-10）。
+    label:
+      en_US: Max Results
+      zh_Hans: 最大结果数
+    llm_description: Number of results to return, between 1 and 10. Default 5.
+    max: 10
+    min: 1
+    required: false
+    type: number

@@ -1,0 +1,38 @@
+credentials_for_provider:
+  anysearch_api_key:
+    help:
+      en_US: Get your AnySearch API key from the AnySearch console (a key lifts
+        rate limits; the API also has an anonymous tier).
+      zh_Hans: 从 AnySearch 控制台获取 API key（配置 key 可提升速率限制；API 也支持匿名访问）。
+    label:
+      en_US: AnySearch API key
+      zh_Hans: AnySearch API key
+    placeholder:
+      en_US: Please input your AnySearch API key
+      zh_Hans: 请输入你的 AnySearch API key
+    required: true
+    type: secret-input
+    url: https://anysearch.com/console/api-keys
+extra:
+  python:
+    source: provider/anysearch.py
+identity:
+  author: tbontb-iaq
+  description:
+    en_US: Real-time web search, vertical domain search, and web page extraction
+      for AI agents.
+    zh_Hans: 面向 AI Agent 的实时网络搜索、垂直领域搜索与网页内容提取。
+  icon: icon.svg
+  icon_dark: icon-dark.svg
+  label:
+    en_US: AnySearch
+    zh_Hans: AnySearch
+  name: anysearch
+  tags:
+    - search
+    - utilities
+tools:
+  - tools/search.yaml
+  - tools/vertical_search.yaml
+  - tools/extract.yaml
+  - tools/sub_domains.yaml

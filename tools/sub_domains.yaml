@@ -1,0 +1,32 @@
+description:
+  human:
+    en_US: List the vertical sub-domains (tags) and their required parameters for
+      a domain, e.g. finance.
+    zh_Hans: 查询某领域（如 finance）可用的垂直子域（tag）及其必填参数。
+  llm: Discover vertical search capabilities for a domain (finance, academic,
+    health, code, legal, travel, security, business, gaming, film, ip, energy,
+    environment, agriculture, resource, social_media). Returns the sub-domain
+    tags and their required parameters. Call this before vertical_search to pick
+    a valid 'tag' and its 'params'.
+extra:
+  python:
+    source: tools/sub_domains.py
+identity:
+  author: tbontb-iaq
+  label:
+    en_US: AnySearch Sub-Domains
+    zh_Hans: AnySearch 子域发现
+  name: sub_domains
+parameters:
+  - name: domain
+    form: llm
+    human_description:
+      en_US: 'The domain to inspect, e.g. finance, academic, health, code.'
+      zh_Hans: '要查询的领域，如 finance、academic、health、code。'
+    label:
+      en_US: Domain
+      zh_Hans: 领域
+    llm_description: The domain to inspect (e.g. finance). Returns available
+      sub-domain tags and required parameters for vertical_search.
+    required: true
+    type: string

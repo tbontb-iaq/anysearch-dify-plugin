@@ -1,0 +1,42 @@
+description:
+  human:
+    en_US: Real-time web search for AI agents via AnySearch, delivering fast and
+      relevant results.
+    zh_Hans: 通过 AnySearch 进行面向 AI Agent 的实时网络搜索，快速返回高相关结果。
+  llm: Real-time web search via AnySearch. Input a query and optionally the number
+    of results (1-10, default 5).
+extra:
+  python:
+    source: tools/search.py
+identity:
+  author: tbontb-iaq
+  label:
+    en_US: AnySearch Search
+    zh_Hans: AnySearch 搜索
+  name: search
+parameters:
+  - name: query
+    form: llm
+    human_description:
+      en_US: The search query.
+      zh_Hans: 搜索查询词。
+    label:
+      en_US: Query
+      zh_Hans: 查询
+    llm_description: The search query.
+    required: true
+    type: string
+  - name: max_results
+    default: 5
+    form: llm
+    human_description:
+      en_US: Number of results to return (1-10).
+      zh_Hans: 返回结果数量（1-10）。
+    label:
+      en_US: Max Results
+      zh_Hans: 最大结果数
+    llm_description: Number of results to return, between 1 and 10. Default 5.
+    max: 10
+    min: 1
+    required: false
+    type: number
