@@ -8,7 +8,9 @@ def call_anysearch(path: str, api_key: str, payload: dict | None = None, params:
     """Call the AnySearch REST API and return its `data` payload.
 
     All endpoints answer with an envelope `{"code": 0, "message": ..., "data": ...}`;
-    a non-zero `code` (or a non-dict body) is raised as an error.
+    a non-zero `code` is an API error even on HTTP 200, and error responses carry
+    an actionable `message` (e.g. 401 "Invalid API key."), which is preferred over
+    the bare HTTP status text.
     """
     headers = {"Content-Type": "application/json"}
     if api_key:
@@ -23,11 +25,19 @@ def call_anysearch(path: str, api_key: str, payload: dict | None = None, params:
         headers=headers,
         timeout=TIMEOUT,
     )
-    resp.raise_for_status()
-    envelope = resp.json()
-    if not isinstance(envelope, dict) or envelope.get("code", 0) != 0:
-        message = envelope.get("message") if isinstance(envelope, dict) else "invalid response"
-        raise RuntimeError(f"AnySearch API error: {message}")
+
+    try:
+        envelope = resp.json()
+    except ValueError:
+        resp.raise_for_status()
+        raise RuntimeError(f"AnySearch API error: HTTP {resp.status_code} (non-JSON response)")
+
+    if not isinstance(envelope, dict):
+        raise RuntimeError("AnySearch API error: invalid response")
+    if resp.status_code >= 400 or envelope.get("code", 0) != 0:
+        raise RuntimeError(
+            f"AnySearch API error: {envelope.get('message') or f'HTTP {resp.status_code}'}"
+        )
 
     data = envelope.get("data")
     return data if isinstance(data, dict) else {}
