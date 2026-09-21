@@ -6,8 +6,8 @@ readme = "README.md"
 requires-python = ">=3.12"
 
 dependencies = [
-    "dify_plugin>=0.10.2",
-    "requests>=2.32.0",
+    "dify_plugin>=0.10.2,<0.11.0",
+    "requests>=2.32.0,<3",
 ]
 
 # uv run black . -C -l 100 && uv run ruff check --fix

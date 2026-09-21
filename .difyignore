@@ -1,0 +1,38 @@
+# Byte-compiled
+__pycache__/
+*.py[cod]
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Environments
+.env
+.env.example
+.venv
+venv/
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Git / IDE
+.git/
+.gitignore
+.github/
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Dify plugin packages
+*.difypkg
+
+# Development only: not needed at runtime
+tests/
+scripts/
+pyproject.toml
+uv.lock
